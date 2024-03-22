@@ -10,7 +10,7 @@ data "aws_ami" "latest" {     # aws_ami helps to get AMI ID of the os
       name = "virtualization-type"
       values = ["hvm"]
     }
-    filter {  # this is the filter for AMI name of the OS which can be found in AMI section in EC2
+    filter {  # this is the filter for AMI name of the OS which can be found in AMI section in EC2 .
         name = "name"
         values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
     }
