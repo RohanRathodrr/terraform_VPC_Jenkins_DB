@@ -5,21 +5,40 @@
 # Jenkins Installation
 ################################################################################################
 
-apt update -y  # It will update repo 
-apt install openjdk-17-jre -y # It will install Openjdk
+# apt update -y  # It will update repo 
+# apt install openjdk-17-jre -y # It will install Openjdk
 
-curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null  # This will update the repository for jenkins
+# curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+#   /usr/share/keyrings/jenkins-keyring.asc > /dev/null  # This will update the repository for jenkins
 
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null  # This will update the repository for jenkins
+# echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+#   https://pkg.jenkins.io/debian binary/ | sudo tee \
+#   /etc/apt/sources.list.d/jenkins.list > /dev/null  # This will update the repository for jenkins
 
-apt-get update -y # This will update the repository
+# apt-get update -y # This will update the repository
 
-apt-get install jenkins -y # This will install jenkins
+# apt-get install jenkins -y # This will install jenkins
 
+# echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+################################################################################################
+# Jenkins Installation
+################################################################################################
+
+sudo apt update -y
+sudo apt install fontconfig openjdk-21-jre
+
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update -y
+sudo apt install jenkins
 echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 
 #####################################################################################################
 # Terraform Installation
